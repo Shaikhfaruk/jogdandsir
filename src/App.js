@@ -1,24 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
 
 function App() {
+  const [items, setItems] = React.useState([]);
+  const [value, setValue] = React.useState("");
+
+  // delete item from list by index
+  const deleteItem = (index) => {
+    const newItems = [...items];
+    newItems.splice(index, 1);
+    setItems(newItems);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <>
+      <div className="container">
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          {items.map((item) => (
+            <div className="items">
+              <div className="item">{item}</div>
+              <button
+                className="button"
+                onClick={() => {
+                  deleteItem(items.indexOf(item));
+                }}
+              >
+                Delete
+              </button>
+            </div>
+          ))}
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+        <input
+          className="input"
+          placeholder="Add a new item"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          type="text"
+        />
+
+        <button
+          className="button"
+          onClick={() => {
+            setItems([...items, value]);
+            setValue("");
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          Add
+        </button>
+      </div>
+    </>
   );
 }
 
