@@ -1,55 +1,51 @@
-import React from "react";
-import "./App.css";
+import React, { useState } from 'react';
+import './style.css';
 
-function App() {
-  const [items, setItems] = React.useState([]);
-  const [value, setValue] = React.useState("");
+const initialValues = [0, 0];
 
-  // delete item from list by index
-  const deleteItem = (index) => {
-    const newItems = [...items];
-    newItems.splice(index, 1);
-    setItems(newItems);
+export default function App() {
+  const [values, setValues] = useState(initialValues);
+
+  const handleAddInput = () => {
+    setValues([...values, 0]);
+  };
+
+  const handleRemoveInput = (index) => {
+    const newValues = [...values];
+    newValues.splice(index, 1);
+    setValues(newValues);
+  };
+
+  const handleChange = (event, index) => {
+    const newValues = [...values];
+    newValues[index] = +event.target.value;
+    setValues(newValues);
   };
 
   return (
-    <>
-      <div className="container">
-        <p>
-          {items.map((item) => (
-            <div className="items">
-              <div className="item">{item}</div>
-              <button
-                className="button"
-                onClick={() => {
-                  deleteItem(items.indexOf(item));
-                }}
-              >
-                Delete
-              </button>
-            </div>
-          ))}
-        </p>
-        <input
-          className="input"
-          placeholder="Add a new item"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          type="text"
-        />
-
-        <button
-          className="button"
-          onClick={() => {
-            setItems([...items, value]);
-            setValue("");
-          }}
-        >
-          Add
+    <div className="container">
+      <div className="sum-container">
+        <h4 className="sum">
+          Sum: {values.reduce((sum, value) => sum + value, 0)}
+        </h4>
+      </div>
+      {values.map((value, index) => (
+        <div className="input-group" key={index}>
+          <label>Number {index + 1}</label>
+          <input
+            type="text"
+            value={value}
+            onChange={(event) => handleChange(event, index)}
+          />
+          <button onClick={() => handleRemoveInput(index)}>Remove</button>
+        </div>
+      ))}
+      <div className="button-group">
+        <button className="add-button" onClick={handleAddInput}>
+          Add Input
         </button>
       </div>
-    </>
+    </div>
   );
 }
 
-export default App;

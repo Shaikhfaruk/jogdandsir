@@ -3,10 +3,70 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 20px;
   height: 100vh;
-  width: 100vw;
-  background-color: #f5f5f5;
+  width: 100%;
 }
-.items {
+
+.input-group {
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
 }
+
+label {
+  width: 120px;
+  color: #333;
+  font-weight: bold;
+  text-align: right;
+  margin-right: 20px;
+}
+
+input {
+  width: 100px;
+  height: 30px;
+  padding: 5px;
+  border: 1px solid #333;
+  font-size: 16px;
+  text-align: center;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+
+button {
+  width: 150px;
+  height: 40px;
+  margin: 0 10px;
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #333;
+}
+
+.sum-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.sum {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+  margin: 0 20px;
+}
+
